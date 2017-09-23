@@ -1,14 +1,91 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
+    <ion-title class="bg-title">
+      Anime Mobile
     </ion-title>
+
+    <ion-buttons end padding-right>
+      <button ion-button icon-only (click)="addCard()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content class="bg-content" padding>
+  <h1 class="h1-d">Your Anime News on the Go!</h1>
+
+  <p>Number of Forums: {{cards.length}}</p>
+
+  <!--<p>Number of Subforums: {{cards.length}}</p>-->
+
+  <ion-card *ngFor="let card of cards">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button clear icon-start (click)="editCard(card)">
+            <ion-icon name="settings"></ion-icon>
+            Edit
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button clear icon-start (click)="eraseCard(card)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <img src="{{card.imgPath}}"/>
+
+    <!--<ion-grid>-->
+      <!--<ion-row>-->
+        <!--<ion-col>-->
+          <!--<button ion-button clear icon-start (click)="editCard(card)">-->
+            <!--<ion-icon name="settings"></ion-icon>-->
+            <!--Edit-->
+          <!--</button>-->
+        <!--</ion-col>-->
+        <!--<ion-col>-->
+          <!--<button ion-button clear icon-start (click)="eraseCard(card)">-->
+            <!--<ion-icon name="trash"></ion-icon>-->
+            <!--Delete-->
+          <!--</button>-->
+        <!--</ion-col>-->
+      <!--</ion-row>-->
+    <!--</ion-grid>-->
+
+    <ion-card-content>
+      <ion-card-title>
+        {{card.title}}
+      </ion-card-title>
+      <p>{{card.desc}}</p>
+    </ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button clear icon-start (click)="clickFav(card)">
+            <ion-icon [name]="(card.favorited) ? 'ios-heart' : 'ios-heart-outline'" ></ion-icon>
+            Fav
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button clear icon-start>
+            <ion-icon name="share-alt"></ion-icon>
+            Share
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button clear icon-start (click)="clickLike(card)">
+            <ion-icon [name]="(card.liked) ? 'ios-thumbs-up' : 'ios-thumbs-up-outline'"></ion-icon>
+            Like
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
 </ion-content>
