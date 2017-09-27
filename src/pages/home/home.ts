@@ -130,11 +130,18 @@ export class HomePage {
                     handler: data => {
                         console.log(data.imgPath);
 
-                        if(data.imgPath == ""){
+                        if(data.imgPath == "") {
                             data.imgPath = "assets/img/imgPlaceHolder.png"
                         }
+                        this.cards.push(data);
 
-                        this.cards.push(data)
+                        if(data.title == ""){
+                            data.title = "No Title"
+                        }
+
+                        if(data.desc == ""){
+                            data.desc = "No Description"
+                        }
                     }
                 }
             ]
@@ -170,6 +177,14 @@ export class HomePage {
                         let index = this.cards.indexOf(cards);
                         if (index > -1){
                             this.cards[index] = data;
+                        }
+
+                        if(data.title == ""){
+                            data.title = "No Title"
+                        }
+
+                        if(data.desc == ""){
+                            data.desc = "No Description"
                         }
                     }
                 }
